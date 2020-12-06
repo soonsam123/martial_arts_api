@@ -1,4 +1,5 @@
 const express = require("express");
+const dojosRoutes = require("./api/routes/dojos");
 
 const app = express();
 
@@ -20,13 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/dojos", function (req, res) {
-  res.send({
-    id: 1,
-    name: "KARATÊ DOJO",
-    teacher: "JACKSON TANAKA",
-  });
-});
+app.use("/dojos", dojosRoutes);
 
 app.use((req, res, next) => {
   const error = Error("Not found");
