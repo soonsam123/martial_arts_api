@@ -14,10 +14,5 @@ module.exports = {
     } catch (error) {
       // TODO: Errors
     }
-    res.send({
-      id: 1,
-      name: "KARATÊ DOJO",
-      teacher: "JACKSON TANAKA",
-    });
   },
 };
