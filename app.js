@@ -11,3 +11,9 @@ app.get("/dojos", function (req, res) {
     teacher: "JACKSON TANAKA",
   });
 });
+
+app.use((req, res, next) => {
+  const error = Error("Not found");
+  res.statusCode = 404;
+  res.send({ error: error.message });
+});
