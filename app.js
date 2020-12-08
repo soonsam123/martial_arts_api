@@ -1,10 +1,14 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+
 const dojosRoutes = require("./api/routes/dojos");
 
 const app = express();
+const jsonParser = bodyParser.json();
 
 app.listen(8000);
 
+app.use(jsonParser);
 /**
  * Adding headers to our requests.
  */
