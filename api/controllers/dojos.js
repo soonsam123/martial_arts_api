@@ -3,7 +3,8 @@ const Dojos = require("../models/dojos");
 
 module.exports = {
   async getAll(req, res) {
-    const sequelize = new Sequelize("martial_arts", "root", "password", {
+    // TODO: This request will result in an error because table name is wrong: `martial_art`...
+    const sequelize = new Sequelize("martial_art", "root", "password", {
       host: "127.0.0.1",
       dialect: "mysql",
     });
@@ -12,7 +13,8 @@ module.exports = {
       const dojos = await Dojos(sequelize, Sequelize.DataTypes).findAll();
       res.status(200).send(dojos || {});
     } catch (error) {
-      // TODO: Errors
+      console.log(error);
+      res.status(500).send({ error: error });
     } finally {
       sequelize.close();
     }
@@ -30,7 +32,8 @@ module.exports = {
       });
       res.status(200).send(dojo);
     } catch (error) {
-      // TODO: Errors
+      console.log(error);
+      res.status(500).send({ error: error });
     } finally {
       sequelize.close();
     }
@@ -53,7 +56,7 @@ module.exports = {
       });
     } catch (error) {
       console.log(error);
-      // TODO: Errors
+      res.status(500).send({ error: error });
     } finally {
       sequelize.close();
     }
@@ -81,7 +84,8 @@ module.exports = {
         message: "Dojo edited successfully",
       });
     } catch (error) {
-      // TODO: Errors
+      console.log(error);
+      res.status(500).send({ error: error });
     } finally {
       sequelize.close();
     }
@@ -103,7 +107,8 @@ module.exports = {
         message: "Dojo removed successfully",
       });
     } catch (error) {
-      // TODO: Errors
+      console.log(error);
+      res.status(500).send({ error: error });
     } finally {
       sequelize.close();
     }
